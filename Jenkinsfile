@@ -31,7 +31,7 @@ pipeline {
     stage('Run Container on Localhost'){
       steps{
         bat 'docker rm -f test-nodejs-app'
-        bat 'docker run -itd --name test-nodejs-app -p 8888:80 ahmadtrg/test-nodejs-app:1.0.0'
+        bat 'docker run -itd --name test-nodejs-app -p 8989:80 ahmadtrg/test-nodejs-app:1.0.0'
       }
     }
   }
