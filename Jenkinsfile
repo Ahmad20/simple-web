@@ -22,10 +22,10 @@ pipeline {
         bat 'docker build -t ahmadtrg/test-nodejs-app:1.0.0 .'
       }
     }
-    stage('Pubat Docker Image'){
+    stage('Push Docker Image'){
       steps{
         bat "docker login -u ahmadtrg -p satuuntuksemua"
-        bat 'docker pubat ahmadtrg/test-nodejs-app:1.0.0'
+        bat 'docker push ahmadtrg/test-nodejs-app:1.0.0'
       }
     }
     stage('Run Container on Localhost'){
