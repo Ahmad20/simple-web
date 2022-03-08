@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Example') {
       steps {
-        sh 'npm config ls'
+        bat 'npm config ls'
       }
     }
   }
