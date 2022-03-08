@@ -1,28 +1,26 @@
-pipeline { 
-  
-   agent any
+pipeline {
+  agent any
+    
   tools {nodejs "node"}
-   stages {
-   
-     stage('Install Dependencies') { 
-        steps { 
-           sh 'npm install' 
-        }
-     }
-     
-     stage('Test') { 
-        steps { 
-           sh 'echo "testing application..."'
-        }
+    
+  stages {
+        
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/Ahmad20/test-nodejs-app'
       }
-
-         stage("Deploy application") { 
-         steps { 
-           sh 'echo "deploying application..."'
-         }
-
-     }
-  
-   	}
-
-   }
+    }
+        
+    stage('Install dependencies') {
+      steps {
+        sh 'npm install'
+      }
+    }
+     
+    stage('Test') {
+      steps {
+         sh 'npm test'
+      }
+    }      
+  }
+}
