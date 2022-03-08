@@ -1,28 +1,13 @@
-pipeline { 
-  
-   agent any
-
-   stages {
-   
-     stage('Install Dependencies') { 
-        steps { 
-           sh 'npm install' 
-        }
-     }
-     
-     stage('Test') { 
-        steps { 
-           sh 'echo "testing application..."'
-        }
+pipeline {
+  agent any
+ 
+  tools {nodejs "nodejs"}
+ 
+  stages {
+    stage('Example') {
+      steps {
+        sh 'npm config ls'
       }
-
-         stage("Deploy application") { 
-         steps { 
-           sh 'echo "deploying application..."'
-         }
-
-     }
-  
-   	}
-
-   }
+    }
+  }
+}
