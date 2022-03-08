@@ -1,5 +1,5 @@
 pipeline {
-  agent { dockerfile true }
+  agent any
     
   tools {nodejs "node"}
     
@@ -19,19 +19,19 @@ pipeline {
     stage('Build Docker Image'){
       agent any
       steps{
-        bat 'docker build -t ahmadtrg/myapp:1.0.0 .'
+        bat 'docker build -t ahmadtrg/test-nodejs-app:1.0.0 .'
       }
     }
     stage('Pubat Docker Image'){
       steps{
         bat "docker login -u ahmadtrg -p satuuntuksemua"
-        bat 'docker pubat ahmadtrg/myapp:1.0.0'
+        bat 'docker pubat ahmadtrg/test-nodejs-app:1.0.0'
       }
     }
     stage('Run Container on Localhost'){
       steps{
-        bat 'docker rm -f myapp'
-        bat 'docker run -itd --name simple-calc -p 8888:80 ahmadtrg/myapp:1.0.0'
+        bat 'docker rm -f test-nodejs-app'
+        bat 'docker run -itd --name test-nodejs-app -p 8888:80 ahmadtrg/test-nodejs-app:1.0.0'
       }
     }
   }
