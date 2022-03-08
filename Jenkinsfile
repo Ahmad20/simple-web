@@ -24,7 +24,9 @@ pipeline {
     }
     stage('Push Docker Image'){
       steps{
-        bat "docker login -u ahmadtrg -p satuuntuksemua"
+        withCredentials([string(credentialsId: 'pass_dockerhub', variable: 'dockerpass')]) {
+          bat "docker login -u ahmadtrg -p ${dockerpass}"
+        }
         bat 'docker push ahmadtrg/test-nodejs-app:1.0.0'
       }
     }
